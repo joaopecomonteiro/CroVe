@@ -1,0 +1,146 @@
+
+
+### Training options ###
+
+# Number of examples per mini-batch
+batch_size: 2
+
+# Number of dataloader threads
+num_workers: 4
+
+# Learning rate
+learning_rate: 0.1
+
+# Decay learning rate by a factor 10 after the following number of epochs
+lr_milestones: [150, 185]
+
+# Weight decay
+weight_decay: 0.0001
+
+# Directory to save experiment to
+logdir: logs
+
+# Number of epochs to train for
+num_epochs: 200
+
+# Number of examples per epoch
+epoch_size: 2000
+
+
+#### Data options ####
+
+# Dataset to train on
+#train_dataset: nuscenes
+train_dataset: opv2v
+
+# Name of split used for training
+train_split: train
+
+# Name of split used for validation
+val_split: val
+
+# Root data directory
+dataroot: ${DATA_ROOT}/OPV2V
+
+# Directory containing pregenerated training labels
+label_root: ${PROCESSED_ROOT}/labels/opv2v_cars
+
+# Input image size after downsampling
+img_size: [800, 600]
+
+# Hold out portion of train data to calibrate on
+hold_out_calibration: False
+
+# Class-specific weighting factors used to balance the cross entropy loss
+class_weights:
+  -    11.0    # vehicle
+
+
+# Prior probability of a positive prediction, used to initialise classifier
+prior:
+  - 0.02086    # vehicle
+
+# Whether to use horizontal flips for data augmentation
+hflip: True
+
+# Top-left and bottom right coordinates of map region, in meters
+map_extents: [1., -25., 50., 25.]
+
+# Spacing between adjacent grid cells in the map, in meters
+map_resolution: 0.25
+
+# Log loss to tensorboard every N iterations
+log_interval: 10
+
+# Visualise predictions every N iterations
+vis_interval: 200
+
+
+### Model options ###
+
+# Architecture to train [pyramid | ved | vpn ]
+model: pyramid
+
+# Number of intermediate channels in the transformer layer
+tfm_channels: 64
+
+# Vertical extents of the region of interest, in meters
+ymin: -2
+ymax: 4
+
+# Approximate camera focal length used for constructing transformers
+focal_length: 630.
+
+# Topdown network options
+topdown:
+
+  # Number of feature channels at each layer of the topdown network
+  channels: 64
+
+  # Number of blocks in each layer
+  layers: [4, 4]
+
+  # Upsampling factor in each stage of the topdown network
+  strides: [1, 2]
+
+  # Type of residual block to use [ basic | bottleneck ]
+  blocktype: bottleneck
+
+# Number of output classes to predict
+num_class: 1
+
+# Whether to use Bayesian classifier
+bayesian: True
+
+# Number of samples used for Monte-Carlo inference
+mc_samples: 40
+
+# Loss function
+loss_fn: bce
+
+# Binary cross entropy loss weight
+xent_weight: 1.0
+
+# Max entropy uncertainty loss weight
+uncert_weight: 0.001
+
+# Focal loss parameters
+focal:
+  alpha: 0.25
+  gamma: 2
+
+# KL-Divergence loss weight (used by VED network)
+kld_weight: 0.0
+
+# Method of weighting classes in loss function
+weight_mode: sqrt_inverse
+
+# Threshold to treat prediction as positive
+score_thresh: 0.5
+
+
+
+
+
+
+

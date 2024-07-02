@@ -1,0 +1,11 @@
+train_dataset: opv2v
+
+dataroot: ${DATA_ROOT}/OPV2V
+
+label_root: ${PROCESSED_ROOT}/labels/opv2v_cars
+
+img_size: [800, 600]
+
+class_weights:
+      -  11.0    # vehicle
+
