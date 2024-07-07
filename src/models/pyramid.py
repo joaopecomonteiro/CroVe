@@ -55,10 +55,8 @@ class PyramidOccupancyNetworkIntermidiateFusion(nn.Module):
 
         # Read logits_coordinates from file so it is faster
         if torch.cuda.is_available():
-            filename = 'logits_coordinates.pkl'
-        else:
-            filename = "logits_coordinates_cpu.pkl"
-        
+            filename = 'utility_files/logits_coordinates.pkl'
+
         with open(filename, 'rb') as f:
             self.logits_coordinates = pickle.load(f)
 

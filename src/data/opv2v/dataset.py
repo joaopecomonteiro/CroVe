@@ -42,7 +42,7 @@ class Opv2vDataset(Dataset):
         self.labels_paths = []
 
         self.data_path = dataset_dir
-        data_info_path = "data_info.pkl"
+        data_info_path = "utility_files/data_info.pkl"
         self.data_info = load_data_info(data_info_path)
 
         for scene in self.data_info[self.split].keys():
@@ -124,7 +124,7 @@ class CollabIntermidiateFusionOpv2vDataset(Dataset):
         self.labels_paths = []
 
         self.data_path = dataset_dir
-        data_info_path = "data_info.pkl"
+        data_info_path = "utility_files/data_info.pkl"
         self.data_info = load_data_info(data_info_path)
         self.pairs_scene_ego_timestamp = []
 
@@ -315,7 +315,7 @@ class CollabLateFusionOpv2vDataset(Dataset):
         self.labels_paths = []
 
         self.data_path = dataset_dir
-        data_info_path = "data_info.pkl"
+        data_info_path = "utility_files/data_info.pkl"
         self.data_info = load_data_info(data_info_path)
         
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

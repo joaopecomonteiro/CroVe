@@ -31,7 +31,7 @@ def train(dataloader, model, criterion, optimiser, summary, config, epoch):
     confusion = BinaryConfusionMatrix(config.num_class)
 
     # Read mask from a single camera from file
-    single_mask = torch.from_numpy(np.load("single_mask.npy")).to(device)
+    single_mask = torch.from_numpy(np.load("utility_files/single_mask.npy")).to(device)
 
     # Iterate over dataloader
     iteration = (epoch - 1) * len(dataloader)
@@ -95,7 +95,7 @@ def evaluate(dataloader, model, criterion, summary, config, epoch):
             batch = [t.cuda() for t in batch]
         
 
-        single_mask = np.load("/home/up202108347/opv2v-mono-semantic-segmentation/single_mask.npy")
+        single_mask = np.load("utility_files/single_mask.npy")
         # Predict class occupancy scores and compute loss
         if config.fusion == "late":
             

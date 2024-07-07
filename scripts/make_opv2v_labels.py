@@ -65,7 +65,7 @@ if __name__ == '__main__':
     config = get_default_configuration()
     config.merge_from_file('configs/datasets/opv2v.yml')
 
-    data_info = load_data_info("/home/up202108347/mono-semantic-maps/data_info.pkl")
+    data_info = load_data_info("utility_files/data_info.pkl")
     
     for split in tqdm(list(data_info.keys()), "split"):
         for scene in tqdm(list(data_info[split].keys()), "scene"):
